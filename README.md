@@ -1,11 +1,12 @@
-This is a library for generating random numbers with varying distributions.
+This library includes an array of useful statistical functions, including functions for generating various numerical distributions.
 
-gaussian
-perlin
+Todo List:
+Gaussian
+Perlin
 
-bimodal
-benfords law
-bernoulli distribution
+Bimodal
+Benfords law
+Bernoulli distribution
 
 
 

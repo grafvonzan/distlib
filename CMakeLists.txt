@@ -13,7 +13,9 @@ set(distlib_src
 # add any files you create related to unit testing here
 set(test_src
   catch.hpp
+  unittests_main.cpp
   unittests_prim.cpp  
+  unittests_gen.cpp
 )
 
 

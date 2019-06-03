@@ -118,3 +118,66 @@ double calc_std_deviation(const std::vector<double> &dataSet, bool type) {
 	
 	return result;
 }
+
+//rejection algorithm
+std::vector<double> gen_arbitrary_r(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize) {
+	
+	srand(seed);
+	
+	//this is used to determine which probability block to use for a given generated number.
+	double keyMult = range / probSet.size();
+	
+}
+
+//This is easier to do, but isn't as statistically rigorus as far as I can tell.
+std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize) {
+	
+	srand(seed);
+	
+	std::vector<double> result;
+	
+	//this is used to pick the bounds on the uniform generator used in each block
+	double keyMult = range / probSet.size();
+	
+	//pick a block using a random generated number and then sample uniformly within that block.
+	for(int i = 0; i < popSize; i++) {
+		
+		//should generate values between 100 and 1
+		int interRand = rand() % 100 + 1;
+		
+		//should generate values between 0 and 1 with
+		double randNum = 1/double(interRand);
+		
+		double probAdd = 0;
+		
+		std::cout << randNum << "\n";
+		
+		for(int j = 0; j < probSet.size(); j++) {
+			//found the right column
+			if(randNum <= probAdd) {
+				//should generate values between 100 and 1
+				int interRand = rand() % 100 + 1;
+		
+				//should generate values between 0 and 1 with 6 significant figures
+				double randNum = 1/double(interRand);
+				
+				//generate a number in the block uniformly as an estimation
+				//this should uniformly generate a number between keyMult*j and keyMult*j + keyMult, which is then scaled by the standard deviation;
+				result.push_back(std_deviation * ((keyMult*j) + (keyMult * (1/interRand))));
+				break;
+			}
+			//go to the next column if not the right column.
+			probAdd += probSet[j];
+		}
+	}
+	
+	for(int i = 0; i < result.size(); i++) {
+		int coin = rand() % 100 + 1;
+		if(coin < 50) {
+			result[i] = 0 - result[i];
+		}
+	}
+	
+	return result;
+	
+}

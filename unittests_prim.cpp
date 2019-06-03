@@ -1,9 +1,5 @@
-#define CATCH_CONFIG_MAIN
-#define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 #include "distlib.h"
-#include <limits>
-
 
 //tests for basic stats
 TEST_CASE("Test average calculation", "[primitive]") {

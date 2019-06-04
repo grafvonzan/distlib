@@ -16,6 +16,7 @@ apt-get -y install build-essential
 apt-get -y install cmake valgrind lcov graphviz doxygen
 apt-get -y install python3-pip
 apt-get -y install clang clang-tidy xvfb
+apt-get -y install feh
 pip3 install gcovr
 pip3 install pexpect
 pip3 install matplotlib

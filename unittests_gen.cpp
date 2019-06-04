@@ -2,6 +2,8 @@
 #include "distlib.h"
 #include <fstream>
 
+
+
 //tests for basic stats
 TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 	
@@ -20,6 +22,8 @@ TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 		}
 		
 		outputFile.close();
+		
+		system("./histInter.sh");
 		
 		REQUIRE(result.size() == 1000);
 		REQUIRE(calc_std_deviation(result, true) == Approx(1));

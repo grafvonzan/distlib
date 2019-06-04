@@ -11,7 +11,7 @@ for line in file_pipe:
 	
 #straight outta an internet tutorial
 
-n, bins, patches = plt.hist(x=dataSet, bins='auto', color = '#71eeb8', alpha = 0.7, rwidth = 0.85)
+n, bins, patches = plt.hist(x=dataSet, bins='auto', color = '#71eeb8', alpha = 0.7, rwidth = 0.85, histtype='step')
 
 plt.grid(axis = 'y', alpha = 0.75)
 plt.xlabel('Value')

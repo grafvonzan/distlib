@@ -23,7 +23,7 @@ TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 		
 		outputFile.close();
 		
-		system("./histInter.sh");
+		system("./histInter.sh test1");
 		
 		REQUIRE(result.size() == 1000);
 		REQUIRE(calc_std_deviation(result, true) == Approx(1));

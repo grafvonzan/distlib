@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 #get input data
 file_pipe = open("histScriptIn.dat", "r")
@@ -22,4 +23,10 @@ maxfreq = n.max()
 plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
 plt.xlim(-100, 100)
 
-plt.savefig("histScriptOut.png")
+fileName = "histScriptOut"
+
+if(len(sys.argv) > 1):
+	fileName = sys.argv[1]
+	
+
+plt.savefig(fileName + ".png")

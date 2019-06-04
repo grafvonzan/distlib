@@ -1,1 +1,1 @@
-python3 histScript.py
+python3 histScript.py $1

@@ -147,7 +147,7 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 		
 		double probAdd = 0;
 		
-		for(int j = 0; j < probSet.size(); j++) {
+		for(int j = 0; j <= probSet.size(); j++) {
 			//found the right column
 			if(randNum <= probAdd) {
 				
@@ -155,20 +155,25 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 				
 				//generate a number in the block uniformly as an estimation
 				//this should uniformly generate a number between keyMult*j and keyMult*j + keyMult, which is then scaled by the standard deviation;
-				result.push_back(std_deviation * ((keyMult*j) - (keyMult * (1/interRand))));
+				result.push_back(std_deviation * ((keyMult*j) + (keyMult * (interRand))));
+				
 				break;
 			}
 			//go to the next column if not the right column.
-			probAdd += probSet[j];
+			probAdd = probAdd + probSet[j];
+
 		}
+
 	}
 	
+	double stdZero = calc_average(result);
+	
 	for(int i = 0; i < result.size(); i++) {
-		int coin = rand() % 100 + 1;
-		if(coin < 50) {
-			result[i] = 0 - result[i];
-		}
+		
+		result[i] = result[i] - stdZero;
+		
 	}
+	
 	
 	std::sort(result.begin(), result.end());
 	

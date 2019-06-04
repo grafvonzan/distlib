@@ -12,7 +12,7 @@ TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 		
 		std::vector<double> testVec{.1, .15, .25, .25, .15, .1};
 		
-		std::vector<double> result = gen_arbitrary_f(testVec, 1, 1, 6, 10000);
+		std::vector<double> result = gen_arbitrary_f(testVec, 1, 1, 6, 100000);
 		
 		std::ofstream outputFile;
 		outputFile.open("histScriptIn.dat");

@@ -21,7 +21,7 @@ plt.title('Distribution Visualization')
 plt.text(23, 45, r'$\mu=15, b=3$')
 maxfreq = n.max()
 plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
-plt.xlim(-100, 100)
+#plt.xlim(-100, 100)
 
 fileName = "histScriptOut"
 

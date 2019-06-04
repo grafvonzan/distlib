@@ -18,6 +18,7 @@ apt-get -y install python3-pip
 apt-get -y install clang clang-tidy xvfb
 pip3 install gcovr
 pip3 install pexpect
+pip3 install matplotlib
 
 # install a lightweight graphical environment
 apt-get -y install virtualbox-guest-dkms 

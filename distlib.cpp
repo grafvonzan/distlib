@@ -132,7 +132,8 @@ std::vector<double> gen_arbitrary_r(const std::vector<double> &probSet, double s
 //This is easier to do, but isn't as statistically rigorus as far as I can tell.
 std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize) {
 	
-	srand(seed);
+	std::mt19937 gen(seed);
+	
 	
 	std::vector<double> result;
 	
@@ -142,28 +143,19 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 	//pick a block using a random generated number and then sample uniformly within that block.
 	for(int i = 0; i < popSize; i++) {
 		
-		//should generate values between 100 and 1
-		int interRand = rand() % 100 + 1;
-		
-		//should generate values between 0 and 1 with
-		double randNum = 1/double(interRand);
+		double randNum = (double)gen()/(double)gen.max();
 		
 		double probAdd = 0;
-		
-		std::cout << randNum << "\n";
 		
 		for(int j = 0; j < probSet.size(); j++) {
 			//found the right column
 			if(randNum <= probAdd) {
-				//should generate values between 100 and 1
-				int interRand = rand() % 100 + 1;
-		
-				//should generate values between 0 and 1 with 6 significant figures
-				double randNum = 1/double(interRand);
+				
+				double interRand = (double)gen()/(double)gen.max();
 				
 				//generate a number in the block uniformly as an estimation
 				//this should uniformly generate a number between keyMult*j and keyMult*j + keyMult, which is then scaled by the standard deviation;
-				result.push_back(std_deviation * ((keyMult*j) + (keyMult * (1/interRand))));
+				result.push_back(std_deviation * ((keyMult*j) - (keyMult * (1/interRand))));
 				break;
 			}
 			//go to the next column if not the right column.
@@ -177,6 +169,8 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 			result[i] = 0 - result[i];
 		}
 	}
+	
+	std::sort(result.begin(), result.end());
 	
 	return result;
 	

@@ -130,12 +130,26 @@ std::vector<double> gen_arbitrary_r(const std::vector<double> &probSet, double s
 }
 
 //This is easier to do, but isn't as statistically rigorus as far as I can tell.
+//An empty result means something probably went wrong!
 std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize) {
+	
+	
 	
 	std::mt19937 gen(seed);
 	
 	
 	std::vector<double> result;
+	
+	//Make sure the requested distribution has a total probability of 1.
+	double sanityCheck = 0;
+	for(int i = 0; i < probSet.size(); i++) {
+		sanityCheck += probSet[i];
+	}
+
+	if(sanityCheck < .99 || sanityCheck > 1.01) {
+		//TODO: Better error visibility
+		return result;
+	}
 	
 	//this is used to pick the bounds on the uniform generator used in each block
 	double keyMult = range / probSet.size();
@@ -160,7 +174,7 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 				break;
 			}
 			//go to the next column if not the right column.
-			probAdd = probAdd + probSet[j];
+			probAdd += probSet[j];
 
 		}
 

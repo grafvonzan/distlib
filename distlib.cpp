@@ -1,3 +1,14 @@
+/*
+	File: 
+		distlib.cpp
+	Description: 
+		This is the main implimentation file for the distlib library.
+	Author: 
+		Zander S. Ackerman
+	Date:
+		June 05 2019
+*/
+
 #include "distlib.h"
 
 //computes the average of a dataset
@@ -130,7 +141,7 @@ std::vector<double> gen_arbitrary_r(const std::vector<double> &probSet, double s
 }
 
 //This is easier to do, but isn't as statistically rigorus as far as I can tell.
-//An empty result means something probably went wrong!
+//An empty result means something probably went wrong! Rather return an empty vector than a wrong one.
 std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize) {
 	
 	
@@ -193,4 +204,47 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 	
 	return result;
 	
+}
+
+//generates a probability vector for FAD generator
+std::vector<double> gen_prob_vector(const std::vector<double> &dataSetX, const std::vector<double> &dataSetY, int numBins) {
+	std::vector<double> result;
+	std::vector<std::pair<double, double>> dataSet;
+	
+	//if 
+	if(dataSetX.size() != dataSetY.size()) {
+		return result;
+	}
+	
+	for(int i = 0; i < dataSetX.size(); i++) {
+		std::pair<double, double> emplacement(dataSetX[i], dataSetY[i]);
+		dataSet.push_back(emplacement);
+	}
+	
+	std::sort(dataSet.begin(), dataSet.end(), comp_coordinate_xasc);
+	
+}
+
+//compares two pairs of doubles under the assumption they are coordinates.
+//returns true if the a has a lower x value than b 
+bool comp_coordinate_xasc(std::pair<double, double> a, std::pair<double, double> b) {
+	bool result = false;
+	
+	if(std::get<0>(a) < std::get<0>(b)) {
+		result = true;
+	}
+	
+	return result;
+}
+
+//compares two pairs of doubles under the assumption they are coordinates.
+//returns true if the first pair has a higher x value than the second value
+bool comp_coordinate_xdec(std::pair<double, double> a, std::pair<double, double> b) {
+	bool result = false;
+	
+	if(std::get<0>(a) > std::get<0>(b)) {
+		result = true;
+	}
+	
+	return result;
 }

@@ -1,10 +1,19 @@
+/*
+	File: 
+		unittests_gen.cpp
+	Description: 
+		Contains the test code for functions with the 'gen' prefix.
+		'gen' prefix functions generate data.
+	Author: 
+		Zander S. Ackerman
+	Date:
+		June 05 2019
+*/
+
 #include "catch.hpp"
 #include "distlib.h"
 #include <fstream>
 
-
-
-//tests for basic stats
 TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 	
 	{//basic test for FAD generation algorithm

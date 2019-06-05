@@ -1,8 +1,19 @@
+/*
+	File: 
+		unittests_calc.cpp
+	Description: 
+		Contains the test code for functions with the 'calc' prefix.
+		'calc' prefix functions perform calculations.
+	Author: 
+		Zander S. Ackerman
+	Date:
+		June 05 2019
+*/
+
 #include "catch.hpp"
 #include "distlib.h"
 
-//tests for basic stats
-TEST_CASE("Test average calculation", "[primitive]") {
+TEST_CASE("Test average calculation", "[calculation]") {
 	{
 		std::vector<double> testVec = {2.5, 3.7, 8.9, 1.3, 0, 7, 4};
 		REQUIRE(calc_average(testVec) == Approx(3.914285714285714));
@@ -19,7 +30,7 @@ TEST_CASE("Test average calculation", "[primitive]") {
 	}
 }
 
-TEST_CASE("Test median calculation", "[primitive]") {
+TEST_CASE("Test median calculation", "[calculation]") {
 	{
 		std::vector<double> testVec = {2.5, 3.7, 8.9, 1.3, 0, 7, 4};
 		REQUIRE(calc_median(testVec) == Approx(3.7));
@@ -36,7 +47,7 @@ TEST_CASE("Test median calculation", "[primitive]") {
 	}
 }
 
-TEST_CASE("Test mode calculation", "[primitive]") {
+TEST_CASE("Test mode calculation", "[calculation]") {
 	{
 		std::vector<double> testVec = {1, 2, 3, 4, 5};
 		std::vector<double> result = calc_mode(testVec);
@@ -64,7 +75,7 @@ TEST_CASE("Test mode calculation", "[primitive]") {
 	}
 }
 
-TEST_CASE("Test variance calculation", "[primitive]") {
+TEST_CASE("Test variance calculation", "[calculation]") {
 	{
 		std::vector<double> testVec = {2.5, 3.7, 8.9, 1.3, 0, 7, 4};
 		REQUIRE(calc_variance(testVec, true) == Approx(8.36979591));
@@ -95,7 +106,7 @@ TEST_CASE("Test variance calculation", "[primitive]") {
 		REQUIRE(calc_variance(testVec, false) == Approx(2.5));
 	}
 }
-TEST_CASE("Test standard deviation calculation", "[primitive]") {
+TEST_CASE("Test standard deviation calculation", "[calculation]") {
 	{
 		std::vector<double> testVec = {2.5, 3.7, 8.9, 1.3, 0, 7, 4};
 		REQUIRE(calc_std_deviation(testVec, true) == Approx(2.8930599));

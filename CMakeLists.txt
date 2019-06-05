@@ -1,3 +1,16 @@
+#######################
+#	File: 
+#		CMakeLists.txt
+#	Description: 
+#		Contains the configuration information necessary to build the 
+#		distlib library
+#	Author: 
+#		(Original) 	Dave McPherson et al (VT ECE Department)		
+#		(Modifed) 	Zander S. Ackerman
+#	Date:
+#		June 05 2019
+#######################
+
 cmake_minimum_required(VERSION 3.5)
 project(DISTLIB CXX)
 

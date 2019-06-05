@@ -1,3 +1,16 @@
+#######################
+#	File: 
+#		Vagrantfile
+#	Description: 
+#		Contains the test code for functions with the 'calc' prefix.
+#		'calc' prefix functions perform calculations.
+#	Author: 
+#		(Original) 	Dave McPherson et al (VT ECE Department)		
+#		(Modifed) 	Zander S. Ackerman
+#	Date:
+#		June 05 2019
+#######################
+
 # IMPORTANT NOTES:
 # For best results use a VirualBox version that matches the guest
 # lsmod | grep -io vboxguest | xargs modinfo | grep -iw version

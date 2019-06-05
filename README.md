@@ -1,5 +1,7 @@
 This library includes an array of useful statistical functions, including functions for generating various numerical distributions.
 
+Written by Zander S. Ackerman
+
 
 ***
 

@@ -1,3 +1,16 @@
+'''
+	File: 
+		histScript.py
+	Description: 
+		This python script is used to graph the test results of unittests_gen.cpp.
+	Author: 		
+		Zander S. Ackerman
+	Date:
+		June 05 2019
+'''
+
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import sys

@@ -15,10 +15,13 @@ Specific cases that need to be handled:
 
 Arbitrary Probability Distribution Generator
 
-	"Filter" Method: Estimation of a given probability distribution
-		This is what I am currently working on to get a rough solution done for many circumstances at once. 
+	"Filter" Method: Estimation of a given probability distribution. 
+		Filter based Arbitrary Distribustion (FAD) Generator
 	Rejection Method: Ziggurat Algorithm adapted for arbitrary distributions
+	Normalized Bin Vector Function: Compute probability block vectors for the FAD generator
 
+
+***
 
 
 Build Instructions:

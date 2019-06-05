@@ -47,7 +47,9 @@ For now, just copy distlib.cpp and distlib.h to your project folder and include 
 For now, the functions included only work with vectors consisting of doubles, ie:
 
 `#include <vector>
+
 ...
+
 std::vector<double> MYVAR;`
 
 

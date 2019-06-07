@@ -60,7 +60,7 @@ TEST_CASE("Test generating probability vector from input dataset", "[generation]
 		for(int i = 0; i < probVec.size(); i++) {
 			unity = unity + probVec[i];
 		}
-	
+		//FAD has a bug where the range needs to be equal to or larger than the size of the probability vector or bad things happen.
 		std::vector<double> result = gen_arbitrary_f(probVec, 1, 1, 10, 100000);
 		
 		std::ofstream outputFile;

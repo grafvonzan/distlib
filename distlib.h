@@ -15,6 +15,7 @@
 #include <map>
 #include <iostream>
 #include <random>
+#include <utility>
 
 //computes the average of a dataset
 double calc_average(const std::vector<double> &dataSet);
@@ -40,7 +41,7 @@ std::vector<double> gen_arbitrary_r(const std::vector<double> &probSet, double s
 std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize);
 
 //generates a probability vector for FAD generator
-std::vector<double> gen_prob_vector(const std::vector<double> &dataSetX, const std::vector<double> &dataSetY, int numBins);
+std::vector<double> gen_prob_vector(const std::vector<double> &dataSetX, const std::vector<double> &dataSetY);
 
 //compares two pairs of doubles under the assumption they are coordinates.
 //returns true if the first pair has a higher x value than the second value

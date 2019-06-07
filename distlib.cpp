@@ -144,11 +144,8 @@ std::vector<double> gen_arbitrary_r(const std::vector<double> &probSet, double s
 //An empty result means something probably went wrong! Rather return an empty vector than a wrong one.
 std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double std_deviation, int seed, int range, int popSize) {
 	
-	
-	
 	std::mt19937 gen(seed);
-	
-	
+		
 	std::vector<double> result;
 	
 	//Make sure the requested distribution has a total probability of 1.
@@ -207,11 +204,11 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 }
 
 //generates a probability vector for FAD generator
-std::vector<double> gen_prob_vector(const std::vector<double> &dataSetX, const std::vector<double> &dataSetY, int numBins) {
+std::vector<double> gen_prob_vector(const std::vector<double> &dataSetX, const std::vector<double> &dataSetY) {
 	std::vector<double> result;
 	std::vector<std::pair<double, double>> dataSet;
 	
-	//if 
+	//make sure that all xs are tied to ys, return an empty vector if they dont match
 	if(dataSetX.size() != dataSetY.size()) {
 		return result;
 	}
@@ -223,6 +220,23 @@ std::vector<double> gen_prob_vector(const std::vector<double> &dataSetX, const s
 	
 	std::sort(dataSet.begin(), dataSet.end(), comp_coordinate_xasc);
 	
+	std::vector<double> integral;
+	double integralAll = 0;
+	
+	//creates vector with each result representing the area under that data point's associated rectangle.
+	for(int i = 0; i < dataSet.size() - 1; i++) {
+		integral.push_back(((std::get<0>(dataSet[i + 1]) - std::get<0>(dataSet[i])) * std::get<1>(dataSet[i])));
+	}
+	
+	for(int i = 0; i < integral.size(); i++) {
+		integralAll = integralAll + integral[i];
+	}
+
+	for(int i = 0; i < integral.size(); i++) {
+		result.push_back(((integral[i]) / integralAll));
+	}
+	
+	return result;
 }
 
 //compares two pairs of doubles under the assumption they are coordinates.

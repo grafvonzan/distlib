@@ -27,7 +27,7 @@ set(distlib_src
 set(test_src
   catch.hpp
   unittests_main.cpp
-  unittests_prim.cpp  
+  unittests_calc.cpp  
   unittests_gen.cpp
 )
 

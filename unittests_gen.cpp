@@ -13,6 +13,7 @@
 #include "catch.hpp"
 #include "distlib.h"
 #include <fstream>
+#include <iostream>
 
 TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 	
@@ -32,10 +33,51 @@ TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 		
 		outputFile.close();
 		
-		system("./histInter.sh test1");
+		system("./histInter.sh testLowResBell");
 		
-		REQUIRE(result.size() == 1000);
+		REQUIRE(result.size() == 100000);
 		REQUIRE(calc_std_deviation(result, true) == Approx(1));
+		
+		
+	}
+}
+
+TEST_CASE("Test generating probability vector from input dataset", "[generation]") {
+	
+	{//basic test for probability vector generator
+		//rough estimation of a normal distribution
+		
+		std::vector<double> testVecX{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		
+		std::vector<double> testVecY{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		
+		std::vector<double> probVec = gen_prob_vector(testVecX, testVecY);
+		
+		REQUIRE(probVec.size() == testVecX.size() - 1);
+		
+		double unity = 0;
+		
+		for(int i = 0; i < probVec.size(); i++) {
+			unity = unity + probVec[i];
+		}
+	
+		std::vector<double> result = gen_arbitrary_f(probVec, 1, 1, 10, 100000);
+		
+		std::ofstream outputFile;
+		outputFile.open("histScriptIn.dat");
+		
+		for(int i = 0; i < result.size(); i++) {
+			outputFile << result[i] << "\n"; 
+		}
+		
+		outputFile.close();
+		
+		system("./histInter.sh testLinear");
+		
+		REQUIRE(unity == Approx(1.0));
+		
+		REQUIRE(result.size() == 100000);
+		//REQUIRE(calc_std_deviation(result, true) == Approx(1));
 		
 		
 	}

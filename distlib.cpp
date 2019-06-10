@@ -160,7 +160,7 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 	}
 	
 	//this is used to pick the bounds on the uniform generator used in each block
-	double keyMult = range / probSet.size();
+	double keyMult = (double) range / (double) probSet.size();
 	
 	//pick a block using a random generated number and then sample uniformly within that block.
 	for(int i = 0; i < popSize; i++) {
@@ -170,19 +170,21 @@ std::vector<double> gen_arbitrary_f(const std::vector<double> &probSet, double s
 		double probAdd = 0;
 		
 		for(int j = 0; j <= probSet.size(); j++) {
+			//go to the next column if not the right column.
+			probAdd += probSet[j];
+			
 			//found the right column
 			if(randNum <= probAdd) {
 				
 				double interRand = (double)gen()/(double)gen.max();
 				
 				//generate a number in the block uniformly as an estimation
-				//this should uniformly generate a number between keyMult*j and keyMult*j + keyMult, which is then scaled by the standard deviation;
-				result.push_back(std_deviation * ((keyMult*j) + (keyMult * (interRand))));
+				//this should uniformly generate a number between the start and end of the column, which is then scaled by the standard deviation;
+				result.push_back(std_deviation * (keyMult*j + (keyMult*interRand)));
 				
 				break;
 			}
-			//go to the next column if not the right column.
-			probAdd += probSet[j];
+			
 
 		}
 

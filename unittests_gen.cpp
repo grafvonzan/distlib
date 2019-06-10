@@ -41,6 +41,7 @@ TEST_CASE("Test arbitrary distribution generator (filter)", "[generation]") {
 		
 	}
 	
+	//RANGE BUG IS FIXED
 	{//test for FAD bug where the range needs to be equal to or larger than the size of the probability vector or bad things happen.
 		//rough estimation of a normal distribution
 		
